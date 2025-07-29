@@ -1,0 +1,19 @@
+.product-card{
+    display: flex;
+    gap: 10px;
+    width: 500px;
+    border: 1px solid black;
+
+    span {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+.product-card-img{
+    display: flex;
+}
