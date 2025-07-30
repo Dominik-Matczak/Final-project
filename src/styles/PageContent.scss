@@ -1,10 +1,10 @@
 .page-products {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .products-filtering {
-    width: 10vw;
     padding: 20px 0;
 
     p {
@@ -15,7 +15,7 @@
 
 .products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 
@@ -24,6 +24,17 @@ li {
 }
 
 img {
-    max-width: 200px;
+    max-width: 100px;
     height: 100%;
+}
+
+.page-buttons-container {
+    align-self: flex-end;
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.page-button {
+    align-self: flex-end;
 }

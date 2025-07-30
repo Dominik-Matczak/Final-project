@@ -19,7 +19,7 @@ export default function MainPage() {
     
 
     useEffect(() => {
-        fetch('https://wolnelektury.pl/api/books')
+         fetch('https://wolnelektury.pl/api/books')
             .then((response) => response.json())
             .then((data) => {
                 const newData = data.map((book) => ({
