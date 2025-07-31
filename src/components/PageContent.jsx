@@ -24,7 +24,6 @@ export default function PageContent({ books, loading, selectedKind, setSelectedK
     }
 
 
-
     return (
 
         loading ? <h2>Trwa wczytywanie książek</h2> : 
@@ -40,14 +39,14 @@ export default function PageContent({ books, loading, selectedKind, setSelectedK
                     <input type="radio" name="kind" value="Dramat" onChange={e => setSelectedKind(e.target.value)} /> Dramat
                 </div>
                 <div className="products">
+
                 {books.map((book, index) => {
 
-                    if (index >= 50 * numberOfPage && index <= (50 * (numberOfPage + 1) - 1)) {
-                        if (selectedKind === '' || selectedKind === book.kind ){
+                    if (index >= 50 * numberOfPage && index <= (50 * (numberOfPage + 1) - 1)) {   
                         return <ProductCard book={book} key={index} basket={basket} setBasket={setBasket}/>
                     }
-                    }
                 })}
+
                 </div>
             </div>
             <div className='page-buttons-container'>
