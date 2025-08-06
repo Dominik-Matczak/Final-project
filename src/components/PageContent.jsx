@@ -36,6 +36,8 @@ export default function PageContent({ books, loading, selectedKind, setSelectedK
             setSortedBooks(filteredbooks);
         }
 
+        setNumberOfPage(0);
+
     },[books, selectedKind])
 
     return (

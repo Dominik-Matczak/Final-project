@@ -1,13 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router"
 import { useState, useEffect } from "react";
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import '../styles/MainPage.scss'
 import PageContent from "../components/PageContent"
 import { useOutletContext } from "react-router-dom";
-
-
-
 
 
 export default function MainPage() {
