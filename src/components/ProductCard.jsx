@@ -7,7 +7,6 @@ export default function ProductCard({ book, basket, setBasket }) {
     const addItemsToTheBasket = (e) => {
         e.preventDefault();
         setBasket((prev) => [...prev, book])
-        console.log(basket);
     }
 
     return (

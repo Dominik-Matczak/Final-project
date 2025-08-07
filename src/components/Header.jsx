@@ -20,7 +20,7 @@ export default function Header( { basket}) {
                     </li>
                     <li>
                         <Link to="favourite">
-                            <i className="fa-solid fa-bookmark"></i>
+                            <i className="fa-solid fa-heart"></i>
                             Ulubione
                         </Link>
                     </li>
