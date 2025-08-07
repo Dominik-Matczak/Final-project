@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 
-export default function BasketBar({basket, insertedDataIsOk, orderCompleted}) {
+export default function BasketBar({basket, insertedDataIsOk, orderCompleted,}) {
    return (
      <div className="basket-bar">
         <Link id="homepage-link" to="/">

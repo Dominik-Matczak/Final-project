@@ -12,12 +12,14 @@ export default function Layout() {
     codeAssociatedPlace: "",
     deliveryCost: 0,
     deliveryMethod: "",
-    paymentMethod: ""
+    paymentMethod: "",
+    totalPrice: 0
   });
   const [books, setBooks] = useState([]);
+  const [ orderList, setOrderList ] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedKind, setSelectedKind] = useState("");
-   const [insertedDataIsOk, setInsertedDataIsOk] = useState();
+  const [insertedDataIsOk, setInsertedDataIsOk] = useState();
   const [orderCompleted, setOrderCompleted] = useState(false);
 
   useEffect(() => {
@@ -39,7 +41,26 @@ export default function Layout() {
 
   return (
     <>
-      <Outlet context={{ basket, setBasket, orderInfo, setOrderInfo, books, setBooks, loading, setLoading, selectedKind, setSelectedKind, insertedDataIsOk, setInsertedDataIsOk, orderCompleted, setOrderCompleted }} />
+      <Outlet
+        context={{
+          basket,
+          setBasket,
+          orderInfo,
+          setOrderInfo,
+          books,
+          setBooks,
+          loading,
+          setLoading,
+          selectedKind,
+          setSelectedKind,
+          insertedDataIsOk,
+          setInsertedDataIsOk,
+          orderCompleted,
+          setOrderCompleted,
+          orderList,
+          setOrderList,
+        }}
+      />
     </>
   );
 }

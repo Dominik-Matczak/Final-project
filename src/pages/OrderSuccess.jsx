@@ -3,7 +3,7 @@ import BasketBar from "../components/BasketBar";
 import "../styles/OrderSuccess.scss";
 
 export default function OrderSuccess() {
-  const { basket, insertedDataIsOk, orderCompleted, orderInfo } =
+  const { basket, insertedDataIsOk, orderCompleted, orderInfo, totalPrice } =
     useOutletContext();
 
   const {
@@ -49,6 +49,8 @@ export default function OrderSuccess() {
           <h3>Wybrana metoda płatności</h3>
           <p>{paymentMethod === `traditional-transfer` ? 'Przelew tradycyjny': 'Blik'}</p>
         </div>
+
+        <p>Kwota łączna: {orderInfo.totalPrice} zł</p>
 
          <a className="fa-solid fa-check"></a>
       </div>

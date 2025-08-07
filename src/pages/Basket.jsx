@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import BasketBar from "../components/BasketBar";
 
 export default function Basket() {
-  const { basket, setBasket, orderInfo, setOrderInfo, orderCompleted, setOrderCompleted, insertedDataIsOk, setInsertedDataIsOk } = useOutletContext();
+  const { basket, setBasket, orderInfo, setOrderInfo, orderCompleted, setOrderCompleted, insertedDataIsOk, setInsertedDataIsOk, orderList, setOrderList  } = useOutletContext();
  
 
   useEffect(() => {
@@ -14,6 +14,13 @@ export default function Basket() {
     setInsertedDataIsOk();
     setOrderCompleted(false);
   }, []);
+
+  useEffect(() => {
+    const summaryBasketPrices = basket.reduce((sum, book) => sum + book.price, 0);
+
+    setOrderInfo({...orderInfo, totalPrice: parseFloat(summaryBasketPrices) + parseFloat(orderInfo.deliveryCost)})
+
+  },[basket, orderInfo.deliveryCost])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +57,6 @@ export default function Basket() {
     setOrderCompleted(true);
   }
 
-  const totalPrice = basket.reduce((sum, book) => sum + book.price, 0);
 
   const {
     name,
@@ -59,6 +65,7 @@ export default function Basket() {
     phoneNumber,
     addressCode,
     codeAssociatedPlace,
+    totalPrice
   } = orderInfo;
 
   return (
@@ -240,7 +247,7 @@ export default function Basket() {
 
               <strong>
                 Łącznie:{` `}
-                {parseFloat(totalPrice) + parseFloat(orderInfo.deliveryCost)} zł
+                {totalPrice} zł
               </strong>
 
               <Link id="buy-now" to="/order-success" onMouseEnter={handleFormDataCheck}>
