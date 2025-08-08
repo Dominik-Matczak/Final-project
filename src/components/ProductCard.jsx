@@ -1,7 +1,7 @@
 import "../styles/ProductCard.scss";
 
 export default function ProductCard({ book, basket, setBasket }) {
-  const { title, author, price, kind } = book;
+  const { title, author, price, kind, genre } = book;
 
   const addItemsToTheBasket = (e) => {
     e.preventDefault();
@@ -26,6 +26,9 @@ export default function ProductCard({ book, basket, setBasket }) {
         </li>
         <li>
             <p>{kind}</p>
+        </li>
+        <li className="genre-list-item">
+            <p>{genre}</p>
         </li>
       </ul>
 

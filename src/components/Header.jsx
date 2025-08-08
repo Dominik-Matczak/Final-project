@@ -18,7 +18,6 @@ export default function Header( { basket}) {
             <div className='header-search-bar'>
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <input onChange={handleSearch} value={searchBar} type="text" placeholder='Wyszukaj po tytule bądź autorze '/>
-                <button>Search</button>
             </div>
             <div className='header-navigation'>
                 <ul>

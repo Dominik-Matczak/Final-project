@@ -1,18 +1,66 @@
+.ad-slider {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    gap: 100px;
+    align-self: center;
+    width: 1000px;
+    height: 300px;
+    box-shadow: #0000003d 0px 3px 8px;
+}
+
+.images-container {
+    position: relative;
+    width: 100%;
+
+    #slide-left,
+    #slide-right{
+        position: absolute;
+        top: 50%;
+        translate: transform(-50%, -50%);
+        z-index: 1;
+        background-color: rgba(0, 150, 33, 0.4);
+        border: none;
+        padding: 5px;
+        border-radius: 40%;
+        color: rgb(255, 255, 255);
+        font-size: 2rem;
+        cursor: pointer;
+
+        &:hover{
+            background-color: rgba(0, 255, 55, 0.4);
+        }
+    }
+
+    #slide-right{
+        right: 2%;
+    }
+
+    #slide-left {
+        left: 2%;
+    }
+}
+
+
 .page-products {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 30px;
 }
 
 .products-filtering {
-    padding: 20px 0;
+    position: sticky;
+    top: 150px;
+    padding: 20px 20px;
     width: 300px;
+    max-height: 800px;
     box-shadow: #0000003d 0px 3px 8px;
     backdrop-filter: blur(20px);
     background-color: rgba(255, 255, 255, 0.4);
     margin-right: 10px;
 
-    p {
+    .filtering-segment-title {
         font-size: 1.2rem;
         font-weight: 800;
     }
@@ -41,6 +89,30 @@ li {
 }
 
 .kind-filtering {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.kind-filtering-option {
     display: flex;
-    gap: 20px;
+    gap: 5px;
+}
+
+.price-filtering-label {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+
+    input {
+        width: 80px;
+    }
+}
+
+.genre-filtering {
+    margin-top: 20px;
+    
+    input {
+        width: 200px;
+        margin-top: 10px;
+    }
 }

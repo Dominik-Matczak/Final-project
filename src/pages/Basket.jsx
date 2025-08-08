@@ -87,7 +87,6 @@ export default function Basket() {
   const handleOrderComplete = () => {
     setOrderCompleted(true);
     setOrderList([...orderList, {...orderInfo, products: basket, totalPrice}])
-    console.log(orderList);
   };
 
   const {

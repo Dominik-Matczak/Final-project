@@ -19,7 +19,7 @@ export default function Layout() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [orderList, setOrderList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedKind, setSelectedKind] = useState("");
+  const [selectedKind, setSelectedKind] = useState('');
   const [insertedDataIsOk, setInsertedDataIsOk] = useState();
   const [orderCompleted, setOrderCompleted] = useState(false);
   const [ searchBar, setSearchBar ] = useState('');
