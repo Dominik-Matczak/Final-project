@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "../styles/MainPage.scss";
 import PageContent from "../components/PageContent";
 import { useOutletContext } from "react-router-dom";

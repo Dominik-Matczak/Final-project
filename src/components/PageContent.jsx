@@ -3,9 +3,6 @@ import ProductCard from "./ProductCard";
 import "../styles/container.scss";
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
-import ad1 from "../assets/ad1.png";
-import ad2 from "../assets/ad2.png";
-import ad3 from "../assets/ad3.png";
 
 export default function PageContent({
   books,
@@ -22,9 +19,13 @@ export default function PageContent({
   const [insertedGenre, setInsertedGenre] = useState("");
   const [currentAdIndex, setCurrentAdIndex] = useState(0);
 
-  const { searchBar } = useOutletContext();
+  const { searchBar, setSearchBar } = useOutletContext();
 
-  const advertImages = [ad1, ad2, ad3];
+  const advertImages = [
+    "/images/ad1.png",
+    "/images/ad2.png",
+    "/images/ad3.png"
+  ];
 
   function handlePageDecrease() {
     if (numberOfPage > 0) {
@@ -39,15 +40,21 @@ export default function PageContent({
   }
 
   function handleAdIndexIncrement() {
-    if (currentAdIndex !== advertImages.length - 1) {
-      setCurrentAdIndex((prev) => prev + 1);
-    }
+      setCurrentAdIndex((prev) => (prev + 1) % advertImages.length);
+  
   }
 
   function handleAdIndexDecrement() {
-    if (currentAdIndex !== 0) {
-      setCurrentAdIndex((prev) => prev - 1);
-    }
+      setCurrentAdIndex((prev) => (prev - 1 + advertImages.length) % advertImages.length);
+
+  }
+
+  function handleClearAllFilters() {
+    setSelectedKind('');
+    setMinPrice('');
+    setMaxPrice('');
+    setInsertedGenre('');
+    setSearchBar('');
   }
 
   useEffect(() => {
@@ -92,28 +99,24 @@ export default function PageContent({
   }, [books, selectedKind, searchBar, minPrice, maxPrice, insertedGenre]);
 
   return loading ? (
-    <h2>Trwa wczytywanie książek</h2>
+    <h2 className="loading-placeholder">Trwa wczytywanie książek</h2>
   ) : (
+    
     <div
       className="container main-page-container"
       style={{ display: "flex", flexDirection: "column" }}
     >
-      <div className="ad-slider">
+      <div className="img-slider">
         <div
           className="images-container"
-          style={{
-            backgroundImage: `url(${advertImages[currentAdIndex]})`,
-            backgroundPosition: "center",
-            backgroundSize: "1000px",
-            backgroundRepeat: "no-repeat",
-          }}
         >
           <button id="slide-left" onClick={handleAdIndexDecrement}>
-            <i class="fa-solid fa-angles-left"></i>
+            <i className="fa-solid fa-angles-left"></i>
           </button>
           <button id="slide-right" onClick={handleAdIndexIncrement}>
-            <i class="fa-solid fa-angles-right"></i>
+            <i className="fa-solid fa-angles-right"></i>
           </button>
+          <img id="slider-image" src={advertImages[currentAdIndex]} alt="" />
         </div>
       </div>
 
@@ -152,9 +155,6 @@ export default function PageContent({
               />
               <p>Dramat</p>
             </label>
-            {selectedKind !== "" && (
-              <button onClick={() => setSelectedKind("")}>Wyczyść filtr</button>
-            )}
           </div>
 
           <div className="price-filtering">
@@ -184,6 +184,8 @@ export default function PageContent({
               onChange={(e) => setInsertedGenre(e.target.value)}
             />
           </div>
+
+          <button className="clear-all-filters" onClick={handleClearAllFilters}>Wyczyść filtry</button>
         </div>
 
         <div className="products">

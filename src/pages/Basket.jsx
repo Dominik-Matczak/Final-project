@@ -6,6 +6,12 @@ import { useEffect } from "react";
 import BasketBar from "../components/BasketBar";
 import { useState } from "react";
 
+import dhlIcon from '../assets/dhl.png'
+import dpdIcon from '../assets/dpd.png'
+import inpostIcon from '../assets/inpost.png'
+import traditionalTransferIcon from '../assets/traditional.png'
+import blikIcon from '../assets/blik.png'
+
 export default function Basket() {
   const {
     basket,
@@ -39,7 +45,7 @@ export default function Basket() {
     });
     setInsertedDataIsOk();
     setOrderCompleted(false);
-  }, []);
+  }, [setInsertedDataIsOk, setOrderCompleted, setOrderInfo]);
 
   useEffect(() => {
     const summaryBasketPrices = basket.reduce(
@@ -50,7 +56,7 @@ export default function Basket() {
     setTotalPrice(
       parseFloat(summaryBasketPrices) + parseFloat(orderInfo.deliveryCost)
     );
-  }, [basket, orderInfo.deliveryCost]);
+  }, [basket, orderInfo.deliveryCost, totalPrice, setTotalPrice]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -212,7 +218,7 @@ export default function Basket() {
                         })
                       }
                     />{" "}
-                    <img src="src/assets/dhl.png" alt="" />
+                    <img src={dhlIcon} alt="" />
                     Kurier DHL +19,99zł
                   </label>
                   <label>
@@ -228,7 +234,7 @@ export default function Basket() {
                         })
                       }
                     />{" "}
-                    <img src="src/assets/inpost.png" alt="" /> Kurier inPost
+                    <img src={inpostIcon} alt="" /> Kurier inPost
                     +14,99zł
                   </label>
                   <label>
@@ -244,7 +250,7 @@ export default function Basket() {
                         })
                       }
                     />{" "}
-                    <img src="src/assets/dpd.png" alt="" /> Kurier DPD +17,99zł
+                    <img src={dpdIcon}alt="" /> Kurier DPD +17,99zł
                   </label>
                   {orderInfo.deliveryCost === 0 &&
                     insertedDataIsOk === false && <p>Wybierz metodę dostawy</p>}
@@ -264,7 +270,7 @@ export default function Basket() {
                         })
                       }
                     />{" "}
-                    <img src="src/assets/traditional.png" alt="" />
+                    <img src={traditionalTransferIcon} alt="" />
                     Przelew tradycyjny
                   </label>
                   <label>
@@ -279,7 +285,7 @@ export default function Basket() {
                         })
                       }
                     />{" "}
-                    <img src="src/assets/blik.png" alt="" />
+                    <img src={blikIcon} alt="" />
                     BLIK
                   </label>
                   {orderInfo.paymentMethod === "" &&

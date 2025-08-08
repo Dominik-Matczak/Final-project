@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import '../styles/Header.scss'
 import { Link } from 'react-router'
 import { useOutletContext } from 'react-router'

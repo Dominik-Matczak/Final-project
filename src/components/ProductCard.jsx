@@ -1,6 +1,9 @@
 import "../styles/ProductCard.scss";
+import dhlIcon from '../assets/dhl.png'
+import dpdIcon from '../assets/dpd.png'
+import inpostIcon from '../assets/inpost.png'
 
-export default function ProductCard({ book, basket, setBasket }) {
+export default function ProductCard({ book, setBasket }) {
   const { title, author, price, kind, genre } = book;
 
   const addItemsToTheBasket = (e) => {
@@ -43,9 +46,9 @@ export default function ProductCard({ book, basket, setBasket }) {
             <i>Dostawa w 3-5 dni</i>
           </li>
           <li className="delivery-option-box">
-                <img src="src/assets/dhl.png" alt="" />
-                <img src="src/assets/dpd.png" alt="" />
-                <img src="src/assets/inpost.png" alt="" />
+                <img src={dhlIcon} alt="dhl" />
+                <img src={dpdIcon} alt="" />
+                <img src={inpostIcon} alt="" />
           </li>
           <li>
           </li>
