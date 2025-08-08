@@ -1,13 +1,23 @@
+import { useEffect } from 'react';
 import '../styles/Header.scss'
 import { Link } from 'react-router'
+import { useOutletContext } from 'react-router'
+
 
 export default function Header( { basket}) {
+
+    const { searchBar, setSearchBar } = useOutletContext();
+
+    const handleSearch = (e) => {
+        setSearchBar(e.target.value)
+    }
+
     return (
         <div className='header-content'>
             <Link to='/'><i className="fa-solid fa-book"></i>Readdiction</Link>
             <div className='header-search-bar'>
                 <i className="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder='Wyszukaj po tytule bądź autorze '/>
+                <input onChange={handleSearch} value={searchBar} type="text" placeholder='Wyszukaj po tytule bądź autorze '/>
                 <button>Search</button>
             </div>
             <div className='header-navigation'>

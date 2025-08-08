@@ -22,6 +22,7 @@ export default function Layout() {
   const [selectedKind, setSelectedKind] = useState("");
   const [insertedDataIsOk, setInsertedDataIsOk] = useState();
   const [orderCompleted, setOrderCompleted] = useState(false);
+  const [ searchBar, setSearchBar ] = useState('');
 
   useEffect(() => {
     fetch("https://wolnelektury.pl/api/books")
@@ -62,6 +63,8 @@ export default function Layout() {
           setOrderList,
           totalPrice,
           setTotalPrice,
+          searchBar,
+          setSearchBar
         }}
       />
     </>

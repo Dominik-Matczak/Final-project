@@ -2,6 +2,7 @@ import '../styles/PageContent.scss'
 import ProductCard from './ProductCard'
 import '../styles/container.scss'
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router';
 
 
 
@@ -9,6 +10,8 @@ export default function PageContent({ books, loading, selectedKind, setSelectedK
 
     const [numberOfPage, setNumberOfPage] = useState(0);
     const [ sortedBooks, setSortedBooks ] = useState([])
+
+    const { searchBar, setSearchBar } = useOutletContext();
 
     function handlePageDecrease() {
         
@@ -40,11 +43,20 @@ export default function PageContent({ books, loading, selectedKind, setSelectedK
 
     },[books, selectedKind])
 
+    useEffect(() => {
+        setSortedBooks(books)
+
+        if (searchBar !== "") {
+            const filteredbooks = books.filter(book => book.title.toLowerCase().includes(searchBar.toLowerCase()) || book.author.toLowerCase().includes(searchBar.toLowerCase()) );
+            setSortedBooks(filteredbooks)
+        }
+    }, [searchBar, books]) 
+
     return (
         
         loading ? <h2>Trwa wczytywanie książek</h2> : 
 
-        <div className="container" style={{display: 'flex', flexDirection: 'column'}}>
+        <div className="container main-page-container" style={{display: 'flex', flexDirection: 'column'}}>
             <div className="page-products">
                 <div className="products-filtering">
                     <p>Gatunek</p>

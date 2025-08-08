@@ -4,6 +4,11 @@
   width: 100vw;
   justify-content: center;
   align-items: center;
+  padding: 20px 0;
+
+  box-shadow: 2px 3px 11px -5px rgba(0,0,0,0.75);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.4);
 
   a {
     margin-top: 30px;

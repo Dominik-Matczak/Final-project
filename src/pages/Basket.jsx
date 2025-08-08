@@ -72,6 +72,7 @@ export default function Basket() {
       orderInfo.surname.length > 3 &&
       orderInfo.street.length > 5 &&
       orderInfo.addressCode.length === 6 &&
+      orderInfo.phoneNumber.length >= 9 &&
       orderInfo.addressCode.includes("-") &&
       orderInfo.codeAssociatedPlace.length > 3 &&
       orderInfo.deliveryCost !== 0 &&
