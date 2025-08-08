@@ -47,15 +47,15 @@ export default function OrderSuccess() {
 
         <div className="order-data-section">
           <h3>Wybrana metoda płatności</h3>
-          <p>{paymentMethod === `traditional-transfer` ? 'Przelew tradycyjny': 'Blik'}</p>
+          <p>
+            {paymentMethod}
+          </p>
         </div>
 
-        <p>Kwota łączna: {orderInfo.totalPrice} zł</p>
+        <p>Kwota łączna: {totalPrice} zł</p>
 
-         <a className="fa-solid fa-check"></a>
+        <a className="fa-solid fa-check"></a>
       </div>
-
-     
     </>
   );
 }

@@ -4,23 +4,53 @@ import "../styles/Basket.scss";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import BasketBar from "../components/BasketBar";
+import { useState } from "react";
 
 export default function Basket() {
-  const { basket, setBasket, orderInfo, setOrderInfo, orderCompleted, setOrderCompleted, insertedDataIsOk, setInsertedDataIsOk, orderList, setOrderList  } = useOutletContext();
- 
+  const {
+    basket,
+    setBasket,
+    orderInfo,
+    setOrderInfo,
+    orderCompleted,
+    setOrderCompleted,
+    insertedDataIsOk,
+    setInsertedDataIsOk,
+    totalPrice,
+    setTotalPrice,
+    orderList,
+    setOrderList
+  } = useOutletContext();
+
+  const [dataCheck, setDataCheck] = useState(false);
 
   useEffect(() => {
-    setOrderInfo({ ...orderInfo, deliveryCost: 0, paymentMethod: '' });
+    setOrderInfo({
+      name: "",
+      surname: "",
+      street: "",
+      phoneNumber: "",
+      addressCode: "",
+      codeAssociatedPlace: "",
+      deliveryCost: 0,
+      deliveryMethod: "",
+      paymentMethod: "",
+      totalPrice: 0,
+    });
     setInsertedDataIsOk();
     setOrderCompleted(false);
   }, []);
 
   useEffect(() => {
-    const summaryBasketPrices = basket.reduce((sum, book) => sum + book.price, 0);
+    const summaryBasketPrices = basket.reduce(
+      (sum, book) => sum + book.price,
+      0
+    );
 
-    setOrderInfo({...orderInfo, totalPrice: parseFloat(summaryBasketPrices) + parseFloat(orderInfo.deliveryCost)})
-
-  },[basket, orderInfo.deliveryCost])
+    setTotalPrice(
+      parseFloat(summaryBasketPrices) + parseFloat(orderInfo.deliveryCost)
+    );
+  }, [basket, orderInfo.deliveryCost]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,8 +85,9 @@ export default function Basket() {
 
   const handleOrderComplete = () => {
     setOrderCompleted(true);
-  }
-
+    setOrderList([...orderList, {...orderInfo, products: basket, totalPrice}])
+    console.log(orderList);
+  };
 
   const {
     name,
@@ -65,12 +96,18 @@ export default function Basket() {
     phoneNumber,
     addressCode,
     codeAssociatedPlace,
-    totalPrice
+    deliveryCost,
+    deliveryMethod,
+    paymentMethod,
   } = orderInfo;
 
   return (
     <>
-      <BasketBar basket={basket} insertedDataIsOk={insertedDataIsOk} orderCompleted={orderCompleted} />
+      <BasketBar
+        basket={basket}
+        insertedDataIsOk={insertedDataIsOk}
+        orderCompleted={orderCompleted}
+      />
 
       <div className="container">
         {basket.length === 0 ? (
@@ -81,33 +118,43 @@ export default function Basket() {
         ) : (
           <div className="basket-content">
             <div className="basket-form">
-              <form className="order-form">
+              <form className="order-form" onMouseLeave={handleFormDataCheck}>
                 <h3>Dane osobowe</h3>
                 <input
+                  className="form-data-input"
                   type="text"
                   placeholder="Imię"
                   name="name"
                   value={name}
                   onChange={handleInputChange}
                 />
-                {(orderInfo.name.length < 3 && insertedDataIsOk === false) && <p>Imię jest za krótkie</p>}
+                {orderInfo.name.length < 3 && insertedDataIsOk === false && (
+                  <p>Imię jest za krótkie</p>
+                )}
                 <input
+                  className="form-data-input"
                   type="text"
                   placeholder="Nazwisko"
                   name="surname"
                   value={surname}
                   onChange={handleInputChange}
                 />
-                {(orderInfo.surname.length < 3 && insertedDataIsOk === false) && <p>Nazwisko jest za krótkie</p>}
+                {orderInfo.surname.length < 3 && insertedDataIsOk === false && (
+                  <p>Nazwisko jest za krótkie</p>
+                )}
                 <input
+                  className="form-data-input"
                   type="text"
                   placeholder="Ulica"
                   name="street"
                   value={street}
                   onChange={handleInputChange}
                 />
-                {(orderInfo.street.length < 5 && insertedDataIsOk === false) && <p>Nazwa ulicy jest za krótka</p>}        
+                {orderInfo.street.length < 5 && insertedDataIsOk === false && (
+                  <p>Nazwa ulicy jest za krótka</p>
+                )}
                 <input
+                  className="form-data-input"
                   type="text"
                   placeholder="Numer telefonu"
                   name="phoneNumber"
@@ -115,7 +162,10 @@ export default function Basket() {
                   onChange={handleInputChange}
                   maxLength={9}
                 />
-                {(orderInfo.phoneNumber.length < 9 && insertedDataIsOk === false) && <p>Nieprawidłowy numer telefonu</p>}
+                {orderInfo.phoneNumber.length < 9 &&
+                  insertedDataIsOk === false && (
+                    <p>Nieprawidłowy numer telefonu</p>
+                  )}
                 <div className="order-address-code">
                   <input
                     type="text"
@@ -135,8 +185,17 @@ export default function Basket() {
                     id="asoAddress"
                   />
                 </div>
-                {(orderInfo.addressCode.length < 6 && insertedDataIsOk === false) && <p>Nieprawidłowy kod pocztowy lub format. Prawidłowy format to (xx-xxx)</p>}
-                {(orderInfo.codeAssociatedPlace.length < 3 && insertedDataIsOk === false) && <p>Nazwa miejscowości jest zbyt krótka</p>}
+                {orderInfo.addressCode.length < 6 &&
+                  insertedDataIsOk === false && (
+                    <p>
+                      Nieprawidłowy kod pocztowy lub format. Prawidłowy format
+                      to (xx-xxx)
+                    </p>
+                  )}
+                {orderInfo.codeAssociatedPlace.length < 3 &&
+                  insertedDataIsOk === false && (
+                    <p>Nazwa miejscowości jest zbyt krótka</p>
+                  )}
 
                 <div className="delivery-method-options">
                   <h3>Sposób dostawy</h3>
@@ -149,7 +208,7 @@ export default function Basket() {
                         setOrderInfo({
                           ...orderInfo,
                           deliveryCost: e.target.value,
-                          deliveryMethod: "Kurier DHL"
+                          deliveryMethod: "Kurier DHL",
                         })
                       }
                     />{" "}
@@ -165,7 +224,7 @@ export default function Basket() {
                         setOrderInfo({
                           ...orderInfo,
                           deliveryCost: e.target.value,
-                          deliveryMethod: "Kurier inPost"
+                          deliveryMethod: "Kurier inPost",
                         })
                       }
                     />{" "}
@@ -181,13 +240,14 @@ export default function Basket() {
                         setOrderInfo({
                           ...orderInfo,
                           deliveryCost: e.target.value,
-                          deliveryMethod: "Kurier DPD"
+                          deliveryMethod: "Kurier DPD",
                         })
                       }
                     />{" "}
                     <img src="src/assets/dpd.png" alt="" /> Kurier DPD +17,99zł
                   </label>
-                  {(orderInfo.deliveryCost === 0 && insertedDataIsOk === false) && <p>Wybierz metodę dostawy</p>}
+                  {orderInfo.deliveryCost === 0 &&
+                    insertedDataIsOk === false && <p>Wybierz metodę dostawy</p>}
                 </div>
 
                 <div className="payment-method-option">
@@ -196,7 +256,7 @@ export default function Basket() {
                     <input
                       type="radio"
                       name="payment-method"
-                      value={`traditional-transfer`}
+                      value={`Przelew tradycyjny`}
                       onChange={(e) =>
                         setOrderInfo({
                           ...orderInfo,
@@ -211,7 +271,7 @@ export default function Basket() {
                     <input
                       type="radio"
                       name="payment-method"
-                      value={`blik`}
+                      value={`BLIK`}
                       onChange={(e) =>
                         setOrderInfo({
                           ...orderInfo,
@@ -222,7 +282,10 @@ export default function Basket() {
                     <img src="src/assets/blik.png" alt="" />
                     BLIK
                   </label>
-                  {(orderInfo.paymentMethod === "" && insertedDataIsOk === false) && <p>Wybierz metodę płatności</p>}
+                  {orderInfo.paymentMethod === "" &&
+                    insertedDataIsOk === false && (
+                      <p>Wybierz metodę płatności</p>
+                    )}
                 </div>
               </form>
             </div>
@@ -250,15 +313,54 @@ export default function Basket() {
                 {totalPrice} zł
               </strong>
 
-              <Link id="buy-now" to="/order-success" onMouseEnter={handleFormDataCheck}>
-                <button type="submit" disabled={insertedDataIsOk === false} onClick={handleOrderComplete}>
+              <button
+                id="summary-button"
+                type="submit"
+                disabled={insertedDataIsOk === false}
+                onClick={() => setDataCheck(true)}
+              >
+                Podsumowanie
+              </button>
+
+              {/* <Link id="buy-now" to="/order-success">
+                <button
+                  type="submit"
+                  disabled={insertedDataIsOk === false}
+                  onClick={handleOrderComplete}
+                >
                   Zamów teraz!
                 </button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         )}
       </div>
+
+      {dataCheck && <div className="inserted-data-section">
+        <div className="inserted-data-confirmation">
+          <i className="fa-solid fa-triangle-exclamation warning-sign"></i>
+          <h4>Sprawdź poprawność danych! </h4>
+          <ul>
+            <li><p>Imię: </p> <span>{name}</span></li>
+            <li><p>Nazwisko: </p><span>{surname}</span></li>
+            <li><p>Adres: </p><span>{street}</span></li>
+            <li>
+              <p>Kod pocztowy i miasto: </p><span>{addressCode} {codeAssociatedPlace}</span>
+            </li>
+            <li><p>Numer telefonu: </p><span>{phoneNumber}</span></li>
+            <li><p>Metoda dostawy: </p><span>{deliveryMethod}</span></li>
+            <li><p>Koszt dostawy: </p><span>{deliveryCost}</span></li>
+            <li><p>Metoda płatności: </p><span>{paymentMethod}</span></li>
+            <li><p>Łączna kwota do zapłaty: </p><span>{totalPrice} zł</span></li>
+          </ul>
+          <div className="confirmation-buttons">
+            <button className="edit-data" onClick={() => setDataCheck(false)}>Edytuj</button>
+            <Link to="/order-success">
+              <button onClick={handleOrderComplete}>Przejdź do płatności</button>
+            </Link>
+          </div>
+        </div>
+      </div>}
     </>
   );
 }

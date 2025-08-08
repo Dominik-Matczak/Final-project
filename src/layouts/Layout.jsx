@@ -13,10 +13,11 @@ export default function Layout() {
     deliveryCost: 0,
     deliveryMethod: "",
     paymentMethod: "",
-    totalPrice: 0
+    totalPrice: 0,
   });
   const [books, setBooks] = useState([]);
-  const [ orderList, setOrderList ] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [orderList, setOrderList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedKind, setSelectedKind] = useState("");
   const [insertedDataIsOk, setInsertedDataIsOk] = useState();
@@ -59,6 +60,8 @@ export default function Layout() {
           setOrderCompleted,
           orderList,
           setOrderList,
+          totalPrice,
+          setTotalPrice,
         }}
       />
     </>
