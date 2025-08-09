@@ -9,7 +9,7 @@ export default function BasketBar({
     <div className="basket-bar">
       <Link id="homepage-link" to="/">
         <button>
-          Strona główna <i className="fa-solid fa-house"></i>{" "}
+           Powrót <i className="fa-solid fa-house"></i>{" "}
         </button>
       </Link>
 

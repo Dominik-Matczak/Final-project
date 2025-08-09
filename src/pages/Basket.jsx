@@ -324,6 +324,7 @@ export default function Basket() {
                 type="submit"
                 disabled={insertedDataIsOk === false}
                 onClick={() => setDataCheck(true)}
+                onMouseEnter={handleFormDataCheck}
               >
                 Podsumowanie
               </button>

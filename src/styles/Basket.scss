@@ -13,7 +13,7 @@
     display: flex;
     gap: 125px;
     font-size: 14px;
-    align-items: cen;
+    align-items: center;
 
     .progression-bar-circle {
       width: 45px;
@@ -50,7 +50,6 @@
       color: white;
       width: 150px;
       height: 40px;
-      cursor: pointer;
     }
 
     button:hover {
@@ -60,20 +59,20 @@
 }
 
 .basket-form {
-  width: 500px;
+  width: 600px;
 }
 
 .basket-content {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .order-form {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
-  width: 750px;
+  width: 100%;
   padding: 10px 20px;
   border-radius: 8px;
 
@@ -81,7 +80,7 @@
   background-color: rgba(255, 255, 255, 0.4);
 
   .form-data-input {
-    width: 500px;
+    width: 100%;
   }
 
   input {
@@ -110,11 +109,11 @@
   gap: 10px;
 
   #addressCode {
-    width: 150px;
+    width: 30%;
   }
 
   #asoAddress {
-    width: 340px;
+    width: 70%;
   }
 }
 
@@ -213,7 +212,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position:absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100dvw;
@@ -248,14 +247,14 @@
     margin: 10px 0px;
     padding: 2px 5px;
 
-      p {
-        font-size: 12px;
-      }
+    p {
+      font-size: 12px;
+    }
 
-      span {
-        font-weight: 800;
-        font-size: 16px;
-      }
+    span {
+      font-weight: 800;
+      font-size: 16px;
+    }
   }
 }
 
@@ -274,9 +273,9 @@
     color: white;
     cursor: pointer;
 
-     &:hover {
+    &:hover {
       background-color: rgb(32, 234, 32);
-     }
+    }
   }
 
   .edit-data {
@@ -292,4 +291,495 @@
   margin: 0 auto 10px auto;
   font-size: 30px;
   color: red;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .basket-form {
+    width: 500px;
+  }
+
+  .order-form {
+    margin-bottom: 50px;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 8px;
+
+    .form-data-input {
+      width: 100%;
+    }
+
+    input {
+      height: 35px;
+      padding: 5px 10px;
+      margin: 5px 0;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: red;
+    }
+  }
+
+  .order-address-code {
+    width: 100%;
+    gap: 10px;
+
+    #addressCode {
+      width: 30%;
+    }
+
+    #asoAddress {
+      width: 70%;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  .basket-products {
+    width: 500px;
+  }
+
+  .basket-form {
+    width: 450px;
+  }
+
+  .order-form {
+    margin-bottom: 50px;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+    .form-data-input {
+      width: 90%;
+    }
+
+    input {
+      height: 35px;
+      padding: 5px 10px;
+      margin: 5px 0;
+      font-size: 12px;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: red;
+    }
+  }
+
+  .order-address-code {
+    width: 90%;
+    gap: 10px;
+
+    #addressCode {
+      width: 30%;
+    }
+
+    #asoAddress {
+      width: 70%;
+    }
+  }
+  .delivery-method-options,
+  .payment-method-option {
+    width: 100%;
+    margin-top: 20px;
+
+    label {
+      padding: 0 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    img {
+      width: 40px;
+      height: 30px;
+    }
+  }
+
+  .basket-bar {
+    width: 100dvw;
+    padding: 20px;
+
+    .progression-bar {
+      gap: 125px;
+      font-size: 14px;
+
+      .progression-bar-circle {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+
+      .filled-bar {
+        font-size: 15px;
+      }
+    }
+
+    #homepage-link button {
+      font-size: 12px;
+      width: 120px;
+      height: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  .basket-products {
+    width: 400px;
+
+    img {
+      max-width: 80px;
+      max-height: 70px;
+    }
+
+    #summary-button {
+      margin-bottom: 50px;
+      width: 130px;
+      height: 50px;
+      font-size: 13px;
+    }
+
+    strong {
+      margin-top: 100px;
+      margin-bottom: 15px;
+      padding: 0 20px;
+      font-size: 1rem;
+    }
+
+    li {
+      gap: 5px;
+      margin: 10px 0;
+
+      button {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .basket-form {
+    width: 350px;
+  }
+
+  .order-form {
+    margin-bottom: 50px;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+    .form-data-input {
+      width: 90%;
+    }
+
+    input {
+      height: 35px;
+      padding: 5px 10px;
+      margin: 5px 0;
+      font-size: 12px;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: red;
+    }
+  }
+
+  .order-address-code {
+    width: 90%;
+    gap: 10px;
+
+    #addressCode {
+      width: 30%;
+    }
+
+    #asoAddress {
+      width: 70%;
+    }
+  }
+  .delivery-method-options,
+  .payment-method-option {
+    width: 100%;
+    margin-top: 20px;
+
+    label {
+      padding: 0 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    img {
+      width: 40px;
+      height: 30px;
+    }
+  }
+
+  .basket-bar {
+    width: 100dvw;
+    padding: 20px;
+
+    .progression-bar {
+      gap: 80px;
+      font-size: 14px;
+
+      .progression-bar-circle {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
+
+      .filled-bar {
+        font-size: 15px;
+      }
+    }
+
+    #homepage-link button {
+      font-size: 12px;
+      width: 120px;
+      height: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width: 800px) {
+    .basket-content {
+      flex-direction: column;
+    }
+  
+  .basket-products {
+    width: 100vw;
+
+    img {
+      max-width: 80px;
+      max-height: 70px;
+    }
+
+    #summary-button {
+      margin-bottom: 50px;
+      width: 130px;
+      height: 50px;
+      font-size: 13px;
+    }
+
+    strong {
+      margin-top: 100px;
+      margin-bottom: 15px;
+      padding: 0 20px;
+      font-size: 1rem;
+    }
+
+    li {
+      gap: 5px;
+      margin: 10px 0;
+
+      button {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .basket-form {
+    width: 100vw;
+  }
+
+  .order-form {
+    margin-bottom: 50px;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+    .form-data-input {
+      width: 90%;
+    }
+
+    input {
+      height: 35px;
+      padding: 5px 10px;
+      margin: 5px 0;
+      font-size: 12px;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: red;
+    }
+  }
+
+  .order-address-code {
+    width: 90%;
+    gap: 10px;
+
+    #addressCode {
+      width: 30%;
+    }
+
+    #asoAddress {
+      width: 70%;
+    }
+  }
+  .delivery-method-options,
+  .payment-method-option {
+    width: 100%;
+    margin-top: 20px;
+
+    label {
+      padding: 0 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    img {
+      width: 40px;
+      height: 30px;
+    }
+  }
+
+  .basket-bar {
+    width: 100dvw;
+    padding: 20px;
+
+    .progression-bar {
+      gap: 40px;
+      font-size: 12px;
+
+      .progression-bar-circle {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+      }
+
+      .filled-bar {
+        font-size: 15px;
+      }
+    }
+
+    #homepage-link button {
+      font-size: 12px;
+      width: 100px;
+      height: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+      .basket-content {
+      flex-direction: column;
+    }
+  
+  .basket-products {
+    width: 100vw;
+
+    img {
+      max-width: 80px;
+      max-height: 70px;
+    }
+
+    #summary-button {
+      margin-bottom: 50px;
+      width: 130px;
+      height: 50px;
+      font-size: 13px;
+    }
+
+    strong {
+      margin-top: 100px;
+      margin-bottom: 15px;
+      padding: 0 20px;
+      font-size: 1rem;
+    }
+
+    li {
+      gap: 5px;
+      margin: 10px 0;
+
+      button {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .basket-form {
+    width: 100vw;
+  }
+
+  .order-form {
+    margin-bottom: 50px;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+    .form-data-input {
+      width: 90%;
+    }
+
+    input {
+      height: 35px;
+      padding: 5px 10px;
+      margin: 5px 0;
+      font-size: 12px;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: red;
+    }
+  }
+
+  .order-address-code {
+    width: 90%;
+    gap: 10px;
+
+    #addressCode {
+      width: 30%;
+    }
+
+    #asoAddress {
+      width: 70%;
+    }
+  }
+  .delivery-method-options,
+  .payment-method-option {
+    width: 100%;
+    margin-top: 20px;
+
+    label {
+      padding: 0 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    img {
+      width: 40px;
+      height: 30px;
+    }
+  }
+
+  .basket-bar {
+    width: 100dvw;
+    padding: 15px;
+
+    .progression-bar {
+      gap: 20px;
+      font-size: 12px;
+
+      .progression-bar-circle {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+      }
+
+      .filled-bar {
+        font-size: 15px;
+      }
+    }
+
+    #homepage-link button {
+      font-size: 10px;
+      width: 80px;
+      height: 30px;
+    }
+  }
 }

@@ -26,7 +26,7 @@ export default function OrderSuccess() {
         orderCompleted={orderCompleted}
       />
       <div className="order-success-content">
-        <h1>Dziękujemy za złożenie zamówienia!</h1>
+        <h2>Dziękujemy za złożenie zamówienia!</h2>
 
         <div className="order-data-section">
           <h3>Dane kupującego</h3>
