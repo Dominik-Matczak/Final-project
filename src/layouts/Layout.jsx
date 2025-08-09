@@ -42,7 +42,6 @@ export default function Layout() {
   }, []);
 
   return (
-    <>
       <Outlet
         context={{
           basket,
@@ -67,6 +66,5 @@ export default function Layout() {
           setSearchBar
         }}
       />
-    </>
   );
 }
