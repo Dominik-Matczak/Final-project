@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import "../styles/container.scss";
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
+import { Link } from "react-router";
 
 export default function PageContent({
   books,
@@ -24,7 +25,7 @@ export default function PageContent({
   const advertImages = [
     "/images/ad1.png",
     "/images/ad2.png",
-    "/images/ad3.png"
+    "/images/ad3.png",
   ];
 
   function handlePageDecrease() {
@@ -40,22 +41,26 @@ export default function PageContent({
   }
 
   function handleAdIndexIncrement() {
-      setCurrentAdIndex((prev) => (prev + 1) % advertImages.length);
-  
+    setCurrentAdIndex((prev) => (prev + 1) % advertImages.length);
   }
 
   function handleAdIndexDecrement() {
-      setCurrentAdIndex((prev) => (prev - 1 + advertImages.length) % advertImages.length);
-
+    setCurrentAdIndex(
+      (prev) => (prev - 1 + advertImages.length) % advertImages.length
+    );
   }
 
   function handleClearAllFilters() {
-    setSelectedKind('');
-    setMinPrice('');
-    setMaxPrice('');
-    setInsertedGenre('');
-    setSearchBar('');
+    setSelectedKind("");
+    setMinPrice("");
+    setMaxPrice("");
+    setInsertedGenre("");
+    setSearchBar("");
   }
+
+  const handleSearch = (e) => {
+    setSearchBar(e.target.value);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -101,15 +106,12 @@ export default function PageContent({
   return loading ? (
     <h2 className="loading-placeholder">Trwa wczytywanie książek</h2>
   ) : (
-    
     <div
       className="container main-page-container"
       style={{ display: "flex", flexDirection: "column" }}
     >
       <div className="img-slider">
-        <div
-          className="images-container"
-        >
+        <div className="images-container">
           <button id="slide-left" onClick={handleAdIndexDecrement}>
             <i className="fa-solid fa-angles-left"></i>
           </button>
@@ -185,7 +187,9 @@ export default function PageContent({
             />
           </div>
 
-          <button className="clear-all-filters" onClick={handleClearAllFilters}>Wyczyść filtry</button>
+          <button className="clear-all-filters" onClick={handleClearAllFilters}>
+            Wyczyść filtry
+          </button>
         </div>
 
         <div className="products">
@@ -217,6 +221,21 @@ export default function PageContent({
             Następna strona
           </button>
         )}
+      </div>
+
+      <div className="floating-moblie-menu-top">
+        <input
+          onChange={handleSearch}
+          value={searchBar}
+          type="text"
+          placeholder="Wyszukaj po tytule bądź autorze "
+        />
+        <div className="mobile-basket-link">
+          <Link to="basket">
+            <i className="fa-solid fa-basket-shopping"></i>
+            {basket.length > 0 && <strong>{basket.length}</strong>}
+          </Link>
+        </div>
       </div>
     </div>
   );

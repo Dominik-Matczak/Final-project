@@ -29,3 +29,9 @@
         max-height: 30px;
     }
 }
+
+@media screen and (max-width: 540px) {
+  .footer-content {
+    display: none;
+  }
+}

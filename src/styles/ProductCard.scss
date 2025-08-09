@@ -6,13 +6,6 @@
   box-shadow: #0000003d 0px 3px 8px;
   backdrop-filter: blur(20px);
   background-color: rgba(255, 255, 255, 0.4);
-  transition: transform 0.5s ease 0.1s;
-
-  &:hover {
-    transform: scale(1.05);
-    position: relative;
-    z-index: 1;
-  }
 
   > ul {
     width: calc(100% - 210px);
@@ -243,6 +236,122 @@
   }
 
   .clear-all-filters {
+    width: 120px;
+    height: 30px;
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 800px) {
+  .product-card {
+    height: 160px;
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+
+    button {
+      width: 140px;
+      height: 25px;
+      font-size: 0.6rem;
+      padding: 8px 16px;
+    }
+  }
+
+  .product-card-img {
+    img {
+      width: 180px;
+      height: 100%;
+    }
+  }
+
+  .product-card-action-box {
+    padding: 8px 16px;
+
+    strong {
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+
+  .delivery-option-box img {
+    max-width: 35px;
+    max-height: 30px;
+  }
+
+  .clear-all-filters {
+    margin-top: 20px;
+    width: 120px;
+    height: 30px;
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .product-card {
+    height: 160px;
+    justify-content: space-evenly;
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+
+    button {
+      width: 140px;
+      height: 25px;
+      font-size: 0.6rem;
+      padding: 8px 16px;
+    }
+    > ul {
+        display: none;
+     }
+  }
+
+  .product-card-img {
+    img {
+      width: 140px;
+      height: 100%;
+    }
+  }
+
+  .product-card-action-box {
+    padding: 8px 16px;
+
+    strong {
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+
+  .delivery-option-box img {
+    max-width: 35px;
+    max-height: 30px;
+  }
+
+  .clear-all-filters {
+    margin-top: 20px;
     width: 120px;
     height: 30px;
     font-size: 0.6rem;
