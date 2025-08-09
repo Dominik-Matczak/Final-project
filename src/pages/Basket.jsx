@@ -43,7 +43,7 @@ export default function Basket() {
       paymentMethod: "",
       totalPrice: 0,
     });
-    setInsertedDataIsOk();
+    setInsertedDataIsOk(false);
     setOrderCompleted(false);
   }, [setInsertedDataIsOk, setOrderCompleted, setOrderInfo]);
 
@@ -95,6 +95,14 @@ export default function Basket() {
     setOrderList([...orderList, {...orderInfo, products: basket, totalPrice}])
   };
 
+  const handleSummary = () => {
+    setDataCheck(true);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }
+
   const {
     name,
     surname,
@@ -124,7 +132,7 @@ export default function Basket() {
         ) : (
           <div className="basket-content">
             <div className="basket-form">
-              <form className="order-form" onMouseLeave={handleFormDataCheck}>
+              <form id="order-data-form" className="order-form" onMouseLeave={handleFormDataCheck}>
                 <h3>Dane osobowe</h3>
                 <input
                   className="form-data-input"
@@ -134,7 +142,7 @@ export default function Basket() {
                   value={name}
                   onChange={handleInputChange}
                 />
-                {orderInfo.name.length < 3 && insertedDataIsOk === false && (
+                {orderInfo.name.length < 3 && orderInfo.name.length > 0 && insertedDataIsOk === false && (
                   <p>Imię jest za krótkie</p>
                 )}
                 <input
@@ -145,7 +153,7 @@ export default function Basket() {
                   value={surname}
                   onChange={handleInputChange}
                 />
-                {orderInfo.surname.length < 3 && insertedDataIsOk === false && (
+                {orderInfo.surname.length < 3 && orderInfo.surname.length > 0 &&  insertedDataIsOk === false && (
                   <p>Nazwisko jest za krótkie</p>
                 )}
                 <input
@@ -156,7 +164,7 @@ export default function Basket() {
                   value={street}
                   onChange={handleInputChange}
                 />
-                {orderInfo.street.length < 5 && insertedDataIsOk === false && (
+                {orderInfo.street.length < 5 && orderInfo.street.length > 0 && insertedDataIsOk === false && (
                   <p>Nazwa ulicy jest za krótka</p>
                 )}
                 <input
@@ -168,7 +176,7 @@ export default function Basket() {
                   onChange={handleInputChange}
                   maxLength={9}
                 />
-                {orderInfo.phoneNumber.length < 9 &&
+                {orderInfo.phoneNumber.length < 9 && orderInfo.phoneNumber.length > 0 &&
                   insertedDataIsOk === false && (
                     <p>Nieprawidłowy numer telefonu</p>
                   )}
@@ -191,14 +199,14 @@ export default function Basket() {
                     id="asoAddress"
                   />
                 </div>
-                {orderInfo.addressCode.length < 6 &&
+                {orderInfo.addressCode.length < 6 && orderInfo.addressCode.length > 0 &&
                   insertedDataIsOk === false && (
                     <p>
                       Nieprawidłowy kod pocztowy lub format. Prawidłowy format
                       to (xx-xxx)
                     </p>
                   )}
-                {orderInfo.codeAssociatedPlace.length < 3 &&
+                {orderInfo.codeAssociatedPlace.length < 3 && orderInfo.codeAssociatedPlace.length > 0 &&
                   insertedDataIsOk === false && (
                     <p>Nazwa miejscowości jest zbyt krótka</p>
                   )}
@@ -252,7 +260,7 @@ export default function Basket() {
                     />{" "}
                     <img src={dpdIcon}alt="" /> Kurier DPD +17,99zł
                   </label>
-                  {orderInfo.deliveryCost === 0 &&
+                  {orderInfo.deliveryCost === 0  &&
                     insertedDataIsOk === false && <p>Wybierz metodę dostawy</p>}
                 </div>
 
@@ -319,25 +327,15 @@ export default function Basket() {
                 {totalPrice} zł
               </strong>
 
-              <button
+                <button
                 id="summary-button"
                 type="submit"
                 disabled={insertedDataIsOk === false}
-                onClick={() => setDataCheck(true)}
+                onClick={handleSummary}
                 onMouseEnter={handleFormDataCheck}
               >
                 Podsumowanie
               </button>
-
-              {/* <Link id="buy-now" to="/order-success">
-                <button
-                  type="submit"
-                  disabled={insertedDataIsOk === false}
-                  onClick={handleOrderComplete}
-                >
-                  Zamów teraz!
-                </button>
-              </Link> */}
             </div>
           </div>
         )}
